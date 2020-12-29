@@ -13,7 +13,7 @@ class NodeData:
         self.nodeInfo = ""
         self.tag = 0
 
-    def getNi(self):
+    def getNi(self) -> dict:
         return self.exitNodes
 
     def getParents(self):

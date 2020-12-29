@@ -29,12 +29,13 @@ class DiGraph(GraphInterface):
         if self.edges.__contains__(s) and self.edges[s] == weight:
             return False
         self.edges[s] = weight
-        # n = NodeData(self.nodes.get(str(id1)))
-        # ni = NodeData(self.nodes.get(str(id2)))
+
         n = self.getNode(id1)
         ni = self.getNode(id2)
+        #if not self.edges.__contains__(s):
         n.addNi(ni)
-        #print(n.getNi())
+        print("                ",n.getNi())  ##### delete
+
         #print(ni.getParents())
         #print(ni.getNi())
         return True
