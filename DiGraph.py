@@ -9,6 +9,10 @@ class DiGraph(GraphInterface):
         self.edges = {}
         self.mc = 0
 
+    def getNode(self, id: int):
+        if self.nodes.__contains__(id):
+            return NodeData(self.nodes.get(id))
+
     def v_size(self) -> int:
         return len(self.nodes)
 
@@ -24,7 +28,15 @@ class DiGraph(GraphInterface):
         s = (id1, "-->", id2)
         if self.edges.__contains__(s) and self.edges[s] == weight:
             return False
-        self.edges[id1, "-->", id2] = weight
+        self.edges[s] = weight
+        # n = NodeData(self.nodes.get(str(id1)))
+        # ni = NodeData(self.nodes.get(str(id2)))
+        n = self.getNode(id1)
+        ni = self.getNode(id2)
+        n.addNi(ni)
+        #print(n.getNi())
+        #print(ni.getParents())
+        #print(ni.getNi())
         return True
 
     def add_node(self, node_id: int, pos: tuple = None) -> bool:
@@ -36,14 +48,13 @@ class DiGraph(GraphInterface):
 
     def remove_node(self, node_id: int) -> bool:
         if self.nodes.__contains__(node_id):
-
-
-
+            node = self.getNode(node_id)
+            for temp in node.getNi():
+                print("ni: ", temp)
 
             self.nodes.pop(node_id)
             return True
         return False
-
 
     def remove_edge(self, node_id1: int, node_id2: int) -> bool:
         pass
