@@ -22,12 +22,13 @@ class NodeData:
     def hasNi(self, key: int):
         return self.exitNodes.__contains__(key)
 
+    def hasParent(self, key: int):
+        return self.enterNodes.__contains__(key)
+
     def addNi(self, other):
         if not (self.exitNodes.__contains__(other.id)):
             self.exitNodes[other.id] = other
             other.enterNodes[self.id] = self
-
-        pass
 
     def removeNi(self, other):
         if self.exitNodes.__contains__(other.id):
@@ -40,10 +41,12 @@ class NodeData:
     def __repr__(self):
         return str(self)
 
-def main():
-    n1 = NodeData(1)
-    print(n1)
 
 
-if __name__ == '__main__':
-    main()
+
+#def main():
+#    n1 = NodeData(1)
+#    print(n1)
+
+#if __name__ == '__main__':
+#    main()

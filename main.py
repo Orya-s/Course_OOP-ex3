@@ -1,6 +1,7 @@
 # This is a sample Python script.
 import matrix
 from NodeData import NodeData
+from DiGraph import DiGraph
 
 
 # import numpy as np
@@ -29,6 +30,22 @@ n1.addNi(n3)
 print(n1.getNi())
 n1.removeNi(n2)
 print(n1.getNi())
+print(n3.hasParent(n1.id))
+n1.removeNi(n3)
+print(n3.hasParent(n1.id))
+
+
+g = DiGraph()
+print(g.nodes)
+g.add_node(n1.id, None)
+print(g.v_size())
+print(g.add_edge(n1.id,n2.id,2))
+print(g.edges)
+print(g.add_edge(n1.id,n2.id,1))
+print(g.edges)
+print(g.e_size())
+
+
 
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
