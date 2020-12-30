@@ -66,6 +66,7 @@ class DiGraph(GraphInterface):
             return False
         self.edges[s] = weight
         n1 = self.getNode(id1)
+        n1 = self.nodes.get(id1)
         n2 = self.getNode(id2)
         n1.exit[id2] = n2
         n2.enter[id1] = n1
@@ -84,9 +85,14 @@ class DiGraph(GraphInterface):
             for temp in node.enter:
                 ni = self.getNode(temp)
                 ni.exit.pop(node_id)
+                s = (temp, "-->", node_id)
+                self.edges.pop(s)
             for temp in node.exit:
                 ni = self.getNode(temp)
                 ni.enter.pop(node_id)
+                s = (node_id, "-->", temp)
+                self.edges.pop(s)
+
             self.nodes.pop(node_id)
             return True
         return False
@@ -107,20 +113,3 @@ class DiGraph(GraphInterface):
 
     def __repr__(self):
         return str(self)
-
-
-def main():
-    # n1 = NodeData(1)
-    # n2 = NodeData(2)
-    g = DiGraph()
-    g.add_node(1)
-    g.add_node(2)
-    print(g)
-    print(g.add_edge(1, 2, 1))
-    print(g.getNode(1).exit)
-    print(g.getNode(2).enter)
-
-
-
-if __name__ == '__main__':
-    main()

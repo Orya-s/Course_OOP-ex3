@@ -13,6 +13,12 @@ def main():
     print(g.remove_node(2))
     print(g.getNode(1).exit)
     print(g.getNode(1).enter)
+    g.add_node(2)
+    print(g.add_edge(1, 2, 1))
+    print(g.remove_edge(1, 2))
+    print(g.edges)
+    print(g.getNode(1).exit)
+    print(g.getNode(2).enter)
 
 
 if __name__ == '__main__':
