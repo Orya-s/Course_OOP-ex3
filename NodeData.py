@@ -1,14 +1,9 @@
 class NodeData:
-    #_nodeId = 0
-    #_nodeTag = 0
-    #_nodeInfo = ""
-    #_enterNodes = {}  # the list of edges coming into this node
-    #_exitNodes = {}  # the list of edges coming from this node
 
-    def __init__(self, id: int, pos:tuple=None):
+    def __init__(self, id: int, pos: tuple = None, enterNodes: dict = None,exitNodes: dict = None):
         self.id = id
-        self.enterNodes = {}  # the list of edges coming into this node
-        self.exitNodes = {}  # the list of edges coming from this node
+        enterNodes = {}  # the list of edges coming into this node
+        exitNodes = {}  # the list of edges coming from this node
         self.nodeTag = 0
         self.nodeInfo = ""
         self.tag = 0
@@ -26,9 +21,11 @@ class NodeData:
         return self.enterNodes.__contains__(key)
 
     def addNi(self, other):
+
         if not (self.exitNodes.__contains__(other.id)):
             self.exitNodes[other.id] = other
             other.enterNodes[self.id] = self
+           # self.exitNodes[other.id.__str__()] = other
 
     def removeNi(self, other):
         if self.exitNodes.__contains__(other.id):
@@ -40,8 +37,6 @@ class NodeData:
 
     def __repr__(self):
         return str(self)
-
-
 
 
 def main():

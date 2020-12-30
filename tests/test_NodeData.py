@@ -3,8 +3,7 @@ import unittest
 
 class TestNodeData(unittest.TestCase):
     def test_get_ni(self):
-        print("hi")
-        self.assertEqual(1,2)
+        self.fail()
 
     def test_get_parents(self):
         self.fail()
