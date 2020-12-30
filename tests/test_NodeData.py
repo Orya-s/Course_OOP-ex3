@@ -1,17 +1,16 @@
-from unittest import TestCase
-from NodeData import NodeData
+import unittest
 
 
-class TestNodeData(TestCase):
+class TestNodeData(unittest.TestCase):
     def test_get_ni(self):
-        n = NodeData(0)
-        self.assertEqual({}, n.getNi())
+        print("hi")
+        self.fail()
 
     def test_get_parents(self):
         self.fail()
 
     def test_has_ni(self):
-        self.assertEqual(1,2)
+        self.fail()
 
     def test_has_parent(self):
         self.fail()

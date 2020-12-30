@@ -44,9 +44,13 @@ class NodeData:
 
 
 
-#def main():
-#    n1 = NodeData(1)
-#    print(n1)
+def main():
+    n0 = NodeData(0)
+    n1 = NodeData(1)
+    n0.addNi(n1)
+    print(n0.getNi())
+    print(n1.getNi())
 
-#if __name__ == '__main__':
-#    main()
+
+if __name__ == '__main__':
+    main()

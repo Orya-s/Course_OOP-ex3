@@ -75,11 +75,15 @@ def main():
     g.add_node(1)
     g.add_node(2)
     print(g.nodes)
+    n1.addNi(n2)
+    print(n1.getNi())
     print(g.add_edge(1,2,1))
     print(n1.hasNi(2))
     print(n1.getNi())
-    print(n2.getNi())
-    print(g.edges)
+
+    # print(n1.getNi())
+    # print(n2.getNi())
+    # print(g.edges)
 
 
 
