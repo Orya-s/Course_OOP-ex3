@@ -79,7 +79,17 @@ class DiGraph(GraphInterface):
         return True
 
     def remove_node(self, node_id: int) -> bool:
-        pass
+        if self.nodes.__contains__(node_id):
+            node = self.getNode(node_id)
+            for temp in node.enter:
+                ni = self.getNode(temp)
+                ni.exit.pop(node_id)
+            for temp in node.exit:
+                ni = self.getNode(temp)
+                ni.enter.pop(node_id)
+            self.nodes.pop(node_id)
+            return True
+        return False
 
     def remove_edge(self, node_id1: int, node_id2: int) -> bool:
         pass
