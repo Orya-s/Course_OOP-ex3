@@ -65,3 +65,23 @@ class DiGraph(GraphInterface):
 
     def __repr__(self):
         return str(self)
+
+
+
+def main():
+    n1 = NodeData(1)
+    n2 = NodeData(2)
+    g = DiGraph()
+    g.add_node(1)
+    g.add_node(2)
+    print(g.nodes)
+    print(g.add_edge(1,2,1))
+    print(n1.hasNi(2))
+    print(n1.getNi())
+    print(n2.getNi())
+    print(g.edges)
+
+
+
+if __name__ == '__main__':
+    main()
