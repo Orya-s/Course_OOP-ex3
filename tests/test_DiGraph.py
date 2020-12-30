@@ -3,6 +3,7 @@ from unittest import TestCase
 
 class TestNodeData(TestCase):
     def test_get_ni(self):
+        self.assertEqual(2,3)
         self.fail()
 
     def test_get_parents(self):
