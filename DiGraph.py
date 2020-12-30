@@ -4,8 +4,8 @@ from GraphInterface import GraphInterface
 
 class NodeData:
 
-    enterNodes= {}
-    exitNodes= {}
+    enterNodes = {}
+    exitNodes = {}
 
     def __init__(self, id: int, pos: tuple = None, enterNodes= None, exitNodes= None):
         self.id = id
@@ -84,7 +84,6 @@ class DiGraph(GraphInterface):
     #     ni = self.getNode(id2)
     #     n.exitNodes[id2] = ni
     #     ni.enterNodes[id1] = n
-    #     print(n.getNi())
     #     return True
 
     def add_edge(self, id1: int, id2: int, weight: float) -> bool:
@@ -95,16 +94,14 @@ class DiGraph(GraphInterface):
             return False
         self.edges[s] = weight
 
-        n = self.getNode(id1)
-        ni = self.getNode(id2)
+        n1 = self.getNode(id1)
+        n2 = self.getNode(id2)
         # if not self.edges.__contains__(s):
         #  n.addNi(ni)
-        n.exitNodes[id2] = ni
-        ni.enterNodes[id1] = n
-        print("                ", n.getNi())  ##### delete
+        n1.exitNodes[id2] = n2
+        n2.enterNodes[id1] = n1
+        print("                ", n1.getNi())  ##### delete
 
-        # print(ni.getParents())
-        # print(ni.getNi())
         return True
 
     def add_node(self, node_id: int, pos: tuple = None) -> bool:
@@ -117,8 +114,7 @@ class DiGraph(GraphInterface):
     def remove_node(self, node_id: int) -> bool:
         if self.nodes.__contains__(node_id):
             node = self.getNode(node_id)
-            for temp in node.getNi():
-                print("ni: ", temp)
+            #for temp in node.getNi():
 
             self.nodes.pop(node_id)
             return True

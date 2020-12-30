@@ -9,16 +9,15 @@ def main():
     n1 = NodeData(1)
     n2 = NodeData(2)
     print("should print {} :  ", n1.getNi())
-
     g = DiGraph()
     print("should print {} :  ", g.nodes)
     g.add_node(n1.id)
-    print(g.nodes)
     g.add_node(n2.id)
-    print(g.nodes)
+    print("should print {1: NodeData: 1, 2: NodeData: 2} :  ", g.nodes)
     g.add_edge(n1.id, n2.id, 1)
-    print(g.edges)
-    print(n1.exitNodes)
+    print("should print {(1, '-->', 2): 1} :  ", g.edges)
+    print("should print {2: NodeData: NodeData: 2} :  ", n1.exitNodes)
+
 
     # print("has ni : ",n1.hasNi(n2.id))
     # print("exit nodes : ",n1.exitNodes)
