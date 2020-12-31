@@ -20,7 +20,6 @@ def main():
     print(g.getNode(1).exit)
     print(g.getNode(2).enter)
     print(g.getNode(1).getNi())
-    print(g.getNode(10).getNi())
 
 
 if __name__ == '__main__':
