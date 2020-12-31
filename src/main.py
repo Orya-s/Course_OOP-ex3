@@ -8,6 +8,7 @@ def main():
     print(g)
     print(g.add_edge(1, 2, 1))
     print(g.add_edge(2, 1, 1))
+    print(g.all_in_edges_of_node(1))
     print(g.getNode(1).exit)
     print(g.getNode(2).enter)
     print(g.remove_node(2))
@@ -15,11 +16,15 @@ def main():
     print(g.getNode(1).enter)
     g.add_node(2)
     print(g.add_edge(1, 2, 1))
+    print(g.add_edge(1, 2, 1))
+    print(g.remove_edge(1, 2))
     print(g.remove_edge(1, 2))
     print(g.edges)
     print(g.getNode(1).exit)
     print(g.getNode(2).enter)
     print(g.getNode(1).getNi())
+
+
 
 
 if __name__ == '__main__':
