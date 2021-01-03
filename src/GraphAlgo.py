@@ -18,13 +18,16 @@ class GraphAlgo(GraphAlgoInterface):
         pass
 
     def save_to_json(self, file_name) -> bool:
-        with open('graph.json', 'w') as json_path:
-            for edge in self.graph.edges.keys():
-                print(type(edge))
-                # print(s.split("-->", ))
-                # str2 = str1.split("-->")
-                # print(str2)
-                    # print(json.dump(edge, json_path))
+        edgeload = []
+        vertices = []
+        for edgeKey in self.graph.edges:
+            weight = self.graph.edges[edgeKey]
+            srcDest = edgeKey.split("-->")
+            edgeload.insert(int(srcDest[0]), int(srcDest[1]))
+            print(edgeload)
+
+        # with open('graph.json', 'w') as json_path:
+        #     json.dump("src: " + srcDest[0] + "dest: " + srcDest[1], json_path)
         return True
 
     def shortest_path(self, id1: int, id2: int) -> (float, list):

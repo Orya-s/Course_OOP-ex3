@@ -104,12 +104,12 @@ class DiGraph(GraphInterface):
             for temp in node.enter:
                 ni = self.getNode(temp)
                 ni.exit.pop(node_id)
-                s = (temp, "-->", node_id)
+                s = str(temp) + "-->" + str(node_id)
                 self.edges.pop(s)
             for temp in node.exit:
                 ni = self.getNode(temp)
                 ni.enter.pop(node_id)
-                s = (node_id, "-->", temp)
+                s = str(node_id) + "-->" + str(temp)
                 self.edges.pop(s)
 
             self.nodes.pop(node_id)
@@ -118,7 +118,7 @@ class DiGraph(GraphInterface):
         return False
 
     def remove_edge(self, node_id1: int, node_id2: int) -> bool:
-        s = (node_id1, "-->", node_id2)
+        s = str(node_id1) + "-->" + str(node_id2)
         if self.edges.__contains__(s):
             n1 = self.getNode(node_id1)
             n2 = self.getNode(node_id2)
