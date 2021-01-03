@@ -35,10 +35,10 @@ class NodeData:
 class DiGraph(GraphInterface):
 
     def __init__(self):
-        if self.nodes is None:
-            self.nodes = {}
-        if self.edges is None:
-            self.edges = {}
+        # if self.nodes is None:
+        self.nodes = {}
+        # if self.edges is None:
+        self.edges = {}
         self.mc = 0
 
     def getNode(self, key: int) -> NodeData:
@@ -67,7 +67,7 @@ class DiGraph(GraphInterface):
     def all_out_edges_of_node(self, id1: int) -> dict:
         out_edges = {}
         for ni in self.getNode(id1).exit:
-            s = (id1, "-->", ni)
+            s = str(id1) + "-->" + str(ni)
             out_edges[ni] = self.edges[s]
         return out_edges
 
@@ -79,7 +79,7 @@ class DiGraph(GraphInterface):
             return False
         if not self.nodes.__contains__(id1) or not self.nodes.__contains__(id2):
             return False
-        s = (id1, "-->", id2)
+        s = str(id1) + "-->" + str(id2)
         if self.edges.__contains__(s) and self.edges[s] == weight:
             return False
         self.edges[s] = weight

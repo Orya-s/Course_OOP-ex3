@@ -233,4 +233,3 @@ class TestDiGraph(TestCase):
         g.remove_edge(0, 1)
         g.remove_edge(0, 1)
         self.assertEqual(2, g.e_size())
-
