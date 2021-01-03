@@ -34,10 +34,10 @@ class NodeData:
 
 class DiGraph(GraphInterface):
 
-    def __init__(self, nodes=None, edges=None):
-        if nodes is None:
+    def __init__(self):
+        if self.nodes is None:
             self.nodes = {}
-        if edges is None:
+        if self.edges is None:
             self.edges = {}
         self.mc = 0
 
