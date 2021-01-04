@@ -1,5 +1,5 @@
 from unittest import TestCase
-
+from paintGraph import *
 from DiGraph import DiGraph
 
 from GraphAlgo import GraphAlgo
@@ -49,19 +49,20 @@ class TestGraphAlgo(TestCase):
         ans.append(list)
         self.assertEqual(ans, ga.connected_components())
 
-
-    # def test_plot_graph(self):
-    #     self.fail()
+    def test_plot_graph(self):
+        graph = self.createGraph()
+        ga = GraphAlgo(graph)
+        ga.plot_graph()
 
     def createGraph(self):
         g = DiGraph()
-        g.add_node(0)
-        g.add_node(1)
-        g.add_node(2)
-        g.add_node(3)
-        g.add_node(4)
-        g.add_node(5)
-        g.add_node(6)
+        g.add_node(0, (32, 30))
+        g.add_node(1, (22, 43))
+        g.add_node(2, (50, 50))
+        g.add_node(3, (52, 13))
+        g.add_node(4, (52, 33))
+        g.add_node(5, (12, 33))
+        g.add_node(6, (1, 2))
         g.add_edge(0, 1, 0.5)
         g.add_edge(5, 1, 0.5)
         g.add_edge(1, 0, 0.5)

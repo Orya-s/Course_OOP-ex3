@@ -1,6 +1,7 @@
 from typing import List
 from DiGraph import DiGraph
 from DiGraph import NodeData
+from paintGraph import *
 import json
 import queue
 import sys
@@ -125,7 +126,9 @@ class GraphAlgo(GraphAlgoInterface):
         return ans
 
     def plot_graph(self) -> None:
-        pass
+        d = paintGraph(self.graph)
+        d.drawnodes()
+        d.drawedges()
 
     def dijkstra(self, id1: int, id2: int):
         q = queue.PriorityQueue()

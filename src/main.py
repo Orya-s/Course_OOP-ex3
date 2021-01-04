@@ -1,5 +1,6 @@
 import queue
-
+import numpy as np
+import matplotlib.pyplot as plt
 from DiGraph import DiGraph
 from GraphAlgo import GraphAlgo
 
