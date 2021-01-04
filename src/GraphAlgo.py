@@ -9,25 +9,36 @@ class GraphAlgo(GraphAlgoInterface):
 
     def __init__(self, g: DiGraph = None):
         self.graph = g
-        # self.edges = g.edges
 
     def get_graph(self) -> DiGraph:
-        return self
+        return self.graph
 
     def load_from_json(self, file_name: str) -> bool:
         pass
 
     def save_to_json(self, file_name) -> bool:
+        dict = {}
         edgeload = []
         vertices = []
         for edgeKey in self.graph.edges:
-            weight = self.graph.edges[edgeKey]
+            temp = {}
             srcDest = edgeKey.split("-->")
-            edgeload.insert(int(srcDest[0]), int(srcDest[1]))
+            temp["src"] = int(srcDest[0])
+            temp["w"] = self.graph.edges[edgeKey]
+            temp["dest"] = int(srcDest[1])
+            edgeload.append(temp)
             print(edgeload)
 
-        # with open('graph.json', 'w') as json_path:
-        #     json.dump("src: " + srcDest[0] + "dest: " + srcDest[1], json_path)
+        for nodeKey in self.graph.nodes:
+            temp = {"id": nodeKey, "pos": self.graph.getNode(nodeKey).pos}
+            vertices.append(temp)
+            print(vertices)
+
+        dict["Edges"] = edgeload
+        dict["Nodes"] = vertices
+
+        with open('graph.json', 'w') as json_path:
+            json.dump(dict, json_path)
         return True
 
     def shortest_path(self, id1: int, id2: int) -> (float, list):

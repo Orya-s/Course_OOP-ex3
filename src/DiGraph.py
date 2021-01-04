@@ -35,9 +35,7 @@ class NodeData:
 class DiGraph(GraphInterface):
 
     def __init__(self):
-        # if self.nodes is None:
         self.nodes = {}
-        # if self.edges is None:
         self.edges = {}
         self.mc = 0
 
@@ -55,13 +53,9 @@ class DiGraph(GraphInterface):
 
     def all_in_edges_of_node(self, id1: int) -> dict:
         in_edges = {}
-        # index = 0
         for ni in self.getNode(id1).enter:
-            s = (ni, "-->", id1)
-            # w = self.edges[s]
-            # dict[index] = (ni, w)
+            s = str(ni) + "-->" + str(id1)
             in_edges[ni] = self.edges[s]
-            # index += 1
         return in_edges
 
     def all_out_edges_of_node(self, id1: int) -> dict:
