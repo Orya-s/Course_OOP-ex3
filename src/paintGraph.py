@@ -1,7 +1,5 @@
 from DiGraph import DiGraph
-from GraphAlgoInterface import GraphAlgoInterface
 import matplotlib.pyplot as plt
-import numpy as np
 
 class paintGraph:
 
@@ -32,7 +30,10 @@ class paintGraph:
             x.append(self.graph.getNode(int(srcDest[1])).pos[0])
             y.append(self.graph.getNode(int(srcDest[1])).pos[1])
             colour = colours[(i % 10)]
-            plt.plot(x, y, color=colour)
+            plt.arrow((self.graph.getNode(int(srcDest[0])).pos[0]), (self.graph.getNode(int(srcDest[0])).pos[1]),
+                      (self.graph.getNode(int(srcDest[1])).pos[0])-(self.graph.getNode(int(srcDest[0])).pos[0]), (self.graph.getNode(int(srcDest[1])).pos[1])-(self.graph.getNode(int(srcDest[0])).pos[1]),
+                      head_width=1, head_length=1, color=colour)
+            # plt.plot(x, y, color=colour)
             x.clear()
             y.clear()
             i = i+1
