@@ -1,5 +1,6 @@
 from typing import List
 from DiGraph import DiGraph
+from DiGraph import NodeData
 import json
 
 from GraphAlgoInterface import GraphAlgoInterface
@@ -14,9 +15,20 @@ class GraphAlgo(GraphAlgoInterface):
         return self.graph
 
     def load_from_json(self, file_name: str) -> bool:
+        self.graph = DiGraph()
         with open(file_name, 'r') as json_path:
-            graph = json.load(json_path)
-            print(graph)
+            json_dict = json.load(json_path)
+            print(type(json_dict))
+        for node in json_dict["Nodes"]:
+            id = node["id"]
+            pos = node["pos"]
+            self.graph.add_node(id, pos)
+        for edge in json_dict["Edges"]:
+            src =edge["src"]
+            dest =edge["dest"]
+            w =edge["w"]
+            self.graph.add_edge(src, dest, w)
+        return True
 
     def save_to_json(self, file_name: str) -> bool:
         dict = {}

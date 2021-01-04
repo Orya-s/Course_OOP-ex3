@@ -21,12 +21,11 @@ def main():
     g.add_edge(5, 7, 1)
     g.add_edge(4, 3, 1)
     g1 = GraphAlgo(g)
-    # t = g1.save_to_json("graph.json")
-    # g2 = GraphAlgo()
-    # g2.load_from_json("graph.json")
-    t = g1.save_to_json("A1")
+    t = g1.save_to_json("graph.json")
     g2 = GraphAlgo()
-    # g2.load_from_json("graph.json")
+    g2.load_from_json("graph.json")
+    print(g2.graph.edges)
+
 
 if __name__ == '__main__':
     main()
