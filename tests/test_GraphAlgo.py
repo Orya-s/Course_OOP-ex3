@@ -25,10 +25,31 @@ class TestGraphAlgo(TestCase):
     def test_connected_component(self):
         graph = self.createGraph()
         ga = GraphAlgo(graph)
-        print(ga.connected_component(3))
-    # def test_connected_components(self):
-    #     self.fail()
-    #
+        list = []
+        list.append(graph.getNode(6))
+        self.assertEqual(list, ga.connected_component(6))
+        list.clear()
+        list.append(graph.getNode(0))
+        list.append(graph.getNode(1))
+        list.append(graph.getNode(2))
+        list.append(graph.getNode(3))
+        list.append(graph.getNode(4))
+        list.append(graph.getNode(5))
+        self.assertEqual(list, ga.connected_component(4))
+
+    def test_connected_components(self):
+        ans = []
+
+        graph = self.createGraph()
+        ga = GraphAlgo(graph)
+        list1 = [graph.getNode(0), graph.getNode(1), graph.getNode(2), graph.getNode(3),
+                 graph.getNode(4), graph.getNode(5)]
+        ans.append(list1)
+        list = [graph.getNode(6)]
+        ans.append(list)
+        self.assertEqual(ans, ga.connected_components())
+
+
     # def test_plot_graph(self):
     #     self.fail()
 

@@ -67,14 +67,19 @@ class GraphAlgo(GraphAlgoInterface):
         return w, path
 
     def connected_component(self, id1: int) -> list:
+        if self.graph is None:
+            return []
+        if not self.graph.nodes.__contains__(id1):
+            return []
         for n in self.graph.nodes:
             node = self.graph.getNode(n)
             node.info = "none"
             node.tag = sys.float_info.max
             node.visited = False
         node = self.graph.getNode(id1)
-        checkQ = queue.Queue
+        checkQ = queue.Queue()
         checkQ.put(node)
+        node.visited = True
         while not checkQ.empty():
             temp = checkQ.get()
             for nodes in temp.getNi():
@@ -93,6 +98,7 @@ class GraphAlgo(GraphAlgoInterface):
             node.visited = False
         node = self.graph.getNode(id1)
         checkQ.put(node)
+        node.visited = True
         while not checkQ.empty():
             temp = checkQ.get()
             for nodes in temp.enter:
@@ -111,7 +117,12 @@ class GraphAlgo(GraphAlgoInterface):
         return ans
 
     def connected_components(self) -> List[list]:
-        pass
+        ans = []
+        for node in self.graph.nodes:
+            if not self.graph.getNode(node).visited:
+                add = self.connected_component(node)
+                ans.append(add)
+        return ans
 
     def plot_graph(self) -> None:
         pass
