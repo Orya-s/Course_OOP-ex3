@@ -59,7 +59,7 @@ class GraphAlgo(GraphAlgoInterface):
             return float('inf'), []
         if id1 == id2:
             return 0, [id1]
-        w = (self.dijakstra(id1, id2))
+        w = (self.dijkstra(id1, id2))
         if w == -1:
             return float('inf'), []
         self.graph.getNode(id2)
@@ -127,7 +127,7 @@ class GraphAlgo(GraphAlgoInterface):
     def plot_graph(self) -> None:
         pass
 
-    def dijakstra(self, id1: int, id2: int):
+    def dijkstra(self, id1: int, id2: int):
         q = queue.PriorityQueue()
         for n in self.graph.nodes:
             node = self.graph.getNode(n)
