@@ -2,6 +2,8 @@ from typing import List
 from DiGraph import DiGraph
 from DiGraph import NodeData
 import json
+import queue
+import sys
 
 from GraphAlgoInterface import GraphAlgoInterface
 
@@ -18,15 +20,14 @@ class GraphAlgo(GraphAlgoInterface):
         self.graph = DiGraph()
         with open(file_name, 'r') as json_path:
             json_dict = json.load(json_path)
-            print(type(json_dict))
         for node in json_dict["Nodes"]:
             id = node["id"]
             pos = node["pos"]
             self.graph.add_node(id, pos)
         for edge in json_dict["Edges"]:
-            src =edge["src"]
-            dest =edge["dest"]
-            w =edge["w"]
+            src = edge["src"]
+            dest = edge["dest"]
+            w = edge["w"]
             self.graph.add_edge(src, dest, w)
         return True
 
@@ -54,7 +55,8 @@ class GraphAlgo(GraphAlgoInterface):
         return True
 
     def shortest_path(self, id1: int, id2: int) -> (float, list):
-        pass
+        w = (self.dijakstra(id1, id2))
+        return w
 
     def connected_component(self, id1: int) -> list:
         pass
@@ -64,3 +66,29 @@ class GraphAlgo(GraphAlgoInterface):
 
     def plot_graph(self) -> None:
         pass
+
+    def dijakstra(self, id1: int, id2: int):
+        q = queue.PriorityQueue()
+        for n in self.graph.nodes:
+            node = self.graph.getNode(n)
+            node.info = "none"
+            node.tag = sys.float_info.max
+        start = self.graph.getNode(id1)
+        start.tag = 0
+        q.put((start.tag, start))
+        while not q.empty():
+            current = q.get()
+            curr = current[1]
+            if curr.tag is not sys.float_info.max:
+                if curr.id == id2:
+                    return curr.tag
+            for nei in self.graph.getNode(curr.id).exit:
+                e = self.graph.getNode(nei)
+                if e.tag is sys.float_info.max:
+                    dist = curr.tag + self.graph.edges[str(curr.id) + "-->" + str(nei)]
+                    if dist < e.tag:
+                        e.tag = dist
+                        e.info = curr.id
+                        q.put((e.tag, e))
+
+        return -1

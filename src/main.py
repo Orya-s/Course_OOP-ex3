@@ -24,7 +24,8 @@ def main():
     t = g1.save_to_json("graph.json")
     g2 = GraphAlgo()
     g2.load_from_json("graph.json")
-    print(g2.graph.edges)
+    #print(g2.graph.edges)
+    print()
 
 
 if __name__ == '__main__':

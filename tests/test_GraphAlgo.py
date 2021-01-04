@@ -6,8 +6,30 @@ from GraphAlgo import GraphAlgo
 
 
 class TestGraphAlgo(TestCase):
-    def test_load_from_json(self):
-        gra = "graph"
+    def test_load_and_save_from_json(self):
+        graph = self.createGraph()
+        ga = GraphAlgo(graph)
+        fileName = "graph.json"
+        ga.save_to_json(fileName)
+        ga.load_from_json(fileName)
+        self.assertEqual(graph, ga.graph)
+        self.assertEqual(graph.edges, ga.graph.edges)
+
+    def test_shortest_path(self):
+        graph = self.createGraph()
+        ga = GraphAlgo(graph)
+        self.assertEqual(0.5, ga.shortest_path(5, 4))
+
+    # def test_connected_component(self):
+    #     self.fail()
+    #
+    # def test_connected_components(self):
+    #     self.fail()
+    #
+    # def test_plot_graph(self):
+    #     self.fail()
+
+    def createGraph(self):
         g = DiGraph()
         g.add_node(0)
         g.add_node(1)
@@ -16,26 +38,15 @@ class TestGraphAlgo(TestCase):
         g.add_node(4)
         g.add_node(5)
         g.add_edge(0, 1, 0.5)
-        g.add_edge(0, 1, 0.5)
+        g.add_edge(5, 1, 0.5)
         g.add_edge(1, 0, 0.5)
         g.add_edge(5, 4, 0.5)
         g.add_edge(2, 1, 1.5)
         g.add_edge(2, 3, 2.5)
         g.add_edge(4, 1, 1.5)
         g.add_edge(5, 3, 3.5)
-        # load_from_json("graph")
+        g.add_edge(3, 5, 4)
+        g.add_edge(4, 2, 6)
 
-    def test_save_to_json(self):
-        self.fail()
 
-    def test_shortest_path(self):
-        self.fail()
-
-    def test_connected_component(self):
-        self.fail()
-
-    def test_connected_components(self):
-        self.fail()
-
-    def test_plot_graph(self):
-        self.fail()
+        return g
