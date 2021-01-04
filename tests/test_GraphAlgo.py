@@ -18,8 +18,8 @@ class TestGraphAlgo(TestCase):
     def test_shortest_path(self):
         graph = self.createGraph()
         ga = GraphAlgo(graph)
-        self.assertEqual(0.5, ga.shortest_path(5, 4))
-        
+        self.assertEqual(4, ga.shortest_path(3, 5))
+
 
     # def test_connected_component(self):
     #     self.fail()
@@ -48,6 +48,7 @@ class TestGraphAlgo(TestCase):
         g.add_edge(5, 3, 3.5)
         g.add_edge(3, 5, 4)
         g.add_edge(4, 2, 6)
+        g.add_edge(1, 2, 0.5)
 
 
         return g

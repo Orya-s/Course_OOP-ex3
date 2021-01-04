@@ -12,6 +12,7 @@ class NodeData:
             self.exit = {}
         self.info = ""
         self.tag = 0.0
+        self.visited = False
 
     def getNi(self):
         return self.exit
@@ -33,6 +34,7 @@ class NodeData:
 
     def __cmp__(self, other):
         return other.tag < self.tag
+
 
 class DiGraph(GraphInterface):
 

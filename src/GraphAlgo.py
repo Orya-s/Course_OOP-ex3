@@ -79,12 +79,13 @@ class GraphAlgo(GraphAlgoInterface):
         while not q.empty():
             current = q.get()
             curr = current[2]
-            if curr.tag is not sys.float_info.max:
+            if not curr.visited:
+                curr.visited = True
                 if curr.id == id2:
                     return curr.tag
                 for nei in self.graph.getNode(curr.id).exit:
                     e = self.graph.getNode(nei)
-                    if e.tag is sys.float_info.max:
+                    if not e.visited:
                         dist = curr.tag + self.graph.edges[str(curr.id) + "-->" + str(nei)]
                         if dist < e.tag:
                             e.tag = dist
