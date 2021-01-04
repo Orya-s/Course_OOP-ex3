@@ -67,7 +67,48 @@ class GraphAlgo(GraphAlgoInterface):
         return w, path
 
     def connected_component(self, id1: int) -> list:
-        pass
+        for n in self.graph.nodes:
+            node = self.graph.getNode(n)
+            node.info = "none"
+            node.tag = sys.float_info.max
+            node.visited = False
+        node = self.graph.getNode(id1)
+        checkQ = queue.Queue
+        checkQ.put(node)
+        while not checkQ.empty():
+            temp = checkQ.get()
+            for nodes in temp.getNi():
+                if not self.graph.getNode(nodes).visited:
+                    checkQ.put(self.graph.getNode(nodes))
+                    self.graph.getNode(nodes).visited = True
+        tempexit = []
+        for node in self.graph.nodes:
+            if self.graph.getNode(node).visited:
+                tempexit.append(self.graph.getNode(node))
+
+        for n in self.graph.nodes:
+            node = self.graph.getNode(n)
+            node.info = "none"
+            node.tag = sys.float_info.max
+            node.visited = False
+        node = self.graph.getNode(id1)
+        checkQ.put(node)
+        while not checkQ.empty():
+            temp = checkQ.get()
+            for nodes in temp.enter:
+                if not self.graph.getNode(nodes).visited:
+                    checkQ.put(self.graph.getNode(nodes))
+                    self.graph.getNode(nodes).visited = True
+        tempenter = []
+        for node in self.graph.nodes:
+            if self.graph.getNode(node).visited:
+                tempenter.append(self.graph.getNode(node))
+
+        ans = []
+        for node in tempenter:
+            if tempexit.__contains__(node):
+                ans.append(node)
+        return ans
 
     def connected_components(self) -> List[list]:
         pass

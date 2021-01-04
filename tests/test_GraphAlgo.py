@@ -22,16 +22,15 @@ class TestGraphAlgo(TestCase):
         self.assertEqual((0.5, [0, 1]), ga.shortest_path(0, 1))
         self.assertEqual((3.5, [0, 1, 2, 3]), ga.shortest_path(0, 3))
 
-
-    # def test_connected_component(self):
-    #     self.fail()
-    #
+    def test_connected_component(self):
+        graph = self.createGraph()
+        ga = GraphAlgo(graph)
+        print(ga.connected_component(3))
     # def test_connected_components(self):
     #     self.fail()
     #
     # def test_plot_graph(self):
     #     self.fail()
-
 
     def createGraph(self):
         g = DiGraph()
