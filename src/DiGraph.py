@@ -31,6 +31,8 @@ class NodeData:
     def __repr__(self):
         return str(self)
 
+    def __cmp__(self, other):
+        return other.tag < self.tag
 
 class DiGraph(GraphInterface):
 

@@ -1,3 +1,5 @@
+import queue
+
 from DiGraph import DiGraph
 from GraphAlgo import GraphAlgo
 
@@ -25,7 +27,20 @@ def main():
     g2 = GraphAlgo()
     g2.load_from_json("graph.json")
     #print(g2.graph.edges)
-    print()
+    q = queue.PriorityQueue()
+    t3 = g.getNode(3).tag
+    t1 = g.getNode(1).tag
+    print(t3)
+    print(t1)
+    t1 = g.getNode(1).tag = 0.5
+    q.put((t3, g.getNode(3)))
+    q.put((t1, g.getNode(1)))
+   # q.put((g.getNode(2).tag, g.getNode(2)))
+
+    while not q.empty():
+        print(q.get())
+
+    print(g.edges[str(1) + "-->" + str(2)])
 
 
 if __name__ == '__main__':

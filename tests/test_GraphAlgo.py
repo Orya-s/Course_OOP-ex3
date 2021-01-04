@@ -19,6 +19,7 @@ class TestGraphAlgo(TestCase):
         graph = self.createGraph()
         ga = GraphAlgo(graph)
         self.assertEqual(0.5, ga.shortest_path(5, 4))
+        
 
     # def test_connected_component(self):
     #     self.fail()

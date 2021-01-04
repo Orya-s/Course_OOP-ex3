@@ -74,21 +74,20 @@ class GraphAlgo(GraphAlgoInterface):
             node.info = "none"
             node.tag = sys.float_info.max
         start = self.graph.getNode(id1)
-        start.tag = 0
-        q.put((start.tag, start))
+        start.tag = 0.0
+        q.put((start.tag, start.id, start))
         while not q.empty():
             current = q.get()
-            curr = current[1]
+            curr = current[2]
             if curr.tag is not sys.float_info.max:
                 if curr.id == id2:
                     return curr.tag
-            for nei in self.graph.getNode(curr.id).exit:
-                e = self.graph.getNode(nei)
-                if e.tag is sys.float_info.max:
-                    dist = curr.tag + self.graph.edges[str(curr.id) + "-->" + str(nei)]
-                    if dist < e.tag:
-                        e.tag = dist
-                        e.info = curr.id
-                        q.put((e.tag, e))
-
+                for nei in self.graph.getNode(curr.id).exit:
+                    e = self.graph.getNode(nei)
+                    if e.tag is sys.float_info.max:
+                        dist = curr.tag + self.graph.edges[str(curr.id) + "-->" + str(nei)]
+                        if dist < e.tag:
+                            e.tag = dist
+                            e.info = curr.id
+                            q.put((e.tag, e.id, e))
         return -1
