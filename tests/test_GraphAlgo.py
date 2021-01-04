@@ -18,17 +18,8 @@ class TestGraphAlgo(TestCase):
     def test_shortest_path(self):
         graph = self.createGraph()
         ga = GraphAlgo(graph)
-        self.assertEqual(4, ga.shortest_path(3, 5))
+        self.assertEqual(0.5, ga.shortest_path(4, 2))
 
-
-    # def test_connected_component(self):
-    #     self.fail()
-    #
-    # def test_connected_components(self):
-    #     self.fail()
-    #
-    # def test_plot_graph(self):
-    #     self.fail()
 
     def createGraph(self):
         g = DiGraph()
@@ -38,6 +29,7 @@ class TestGraphAlgo(TestCase):
         g.add_node(3)
         g.add_node(4)
         g.add_node(5)
+        g.add_node(6)
         g.add_edge(0, 1, 0.5)
         g.add_edge(5, 1, 0.5)
         g.add_edge(1, 0, 0.5)

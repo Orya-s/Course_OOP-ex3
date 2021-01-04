@@ -55,8 +55,16 @@ class GraphAlgo(GraphAlgoInterface):
         return True
 
     def shortest_path(self, id1: int, id2: int) -> (float, list):
+        if not self.graph.nodes.__contains__(id1) or not self.graph.nodes.__contains__(id2):
+            return float('inf'), []
+        if id1 == id2:
+            return 0, [id1]
         w = (self.dijakstra(id1, id2))
-        return w
+        if w == -1:
+            return float('inf'), []
+        self.graph.getNode(id2)
+        path = self.getPath(id1, id2)
+        return w, path
 
     def connected_component(self, id1: int) -> list:
         pass
@@ -92,3 +100,14 @@ class GraphAlgo(GraphAlgoInterface):
                             e.info = curr.id
                             q.put((e.tag, e.id, e))
         return -1
+
+    def getPath(self, id1: int, id2: int):
+        node = self.graph.getNode(id2)
+        path = []
+        while(node.id != id1):
+            path.append(node.id)
+            info = node.info
+            node = self.graph.getNode(info)
+        path.append(id1)
+        path.reverse()
+        return path
