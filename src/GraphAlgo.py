@@ -81,6 +81,7 @@ class GraphAlgo(GraphAlgoInterface):
             node = self.graph.getNode(n)
             node.info = "none"
             node.tag = sys.float_info.max
+            node.visited = False
         start = self.graph.getNode(id1)
         start.tag = 0.0
         q.put((start.tag, start.id, start))
@@ -104,7 +105,7 @@ class GraphAlgo(GraphAlgoInterface):
     def getPath(self, id1: int, id2: int):
         node = self.graph.getNode(id2)
         path = []
-        while(node.id != id1):
+        while node.id != id1:
             path.append(node.id)
             info = node.info
             node = self.graph.getNode(info)
