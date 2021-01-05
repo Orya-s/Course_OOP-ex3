@@ -36,8 +36,8 @@ class paintGraph:
             nodes.append(n.id)
             x.append(n.pos[0])
             y.append(n.pos[1])
-            plt.annotate(str(node), xy=(n.pos[0] + 0.7, n.pos[1] - 0.8), size=10)
-        plt.scatter(x, y, c='black')
+            plt.annotate(str(node), xy=(n.pos[0] , n.pos[1]), size=8, c="r")
+        plt.scatter(x, y, c='black', s= 5)
 
     def drawedges(self):
         x = []
