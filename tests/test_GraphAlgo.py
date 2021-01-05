@@ -79,7 +79,7 @@ class TestGraphAlgo(TestCase):
         graph.add_node(9, (30, 35))
         ga = GraphAlgo(graph)
         ga.plot_graph()
-        g = self.randomGraph(100)
+        g = self.randomGraph(1000)
         algo = GraphAlgo(g)
         algo.plot_graph()
 
