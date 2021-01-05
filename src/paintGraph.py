@@ -36,7 +36,8 @@ class paintGraph:
             nodes.append(n.id)
             x.append(n.pos[0])
             y.append(n.pos[1])
-            plt.annotate(str(node), xy=(n.pos[0] , n.pos[1]), size=8, c="r")
+            if len(self.graph.nodes) < 1000:
+                plt.annotate(str(node), xy=(n.pos[0] , n.pos[1]), size=8, c="r")
         plt.scatter(x, y, c='black', s= 5)
 
     def drawedges(self):
@@ -61,10 +62,11 @@ class paintGraph:
             y1 = self.graph.getNode(int(srcDest[0])).pos[1]
             x2 = self.graph.getNode(int(srcDest[1])).pos[0]
             y2 = self.graph.getNode(int(srcDest[1])).pos[1]
-            if x1 > x2:
-                plt.annotate("{:.2f}".format(w), xy=((x1 + x2) / 2, (y1 + y2) / 2), size=6, c="b")
-            else:
-                plt.annotate("{:.2f}".format(w), xy=((x1 + x2) / 2 , (y1 + y2) / 2 ), size=6, c="g")
+            if len(self.graph.edges) < 100:
+                if x1 > x2:
+                    plt.annotate("{:.2f}".format(w), xy=((x1 + x2) / 2, (y1 + y2) / 2), size=6, c="b")
+                else:
+                    plt.annotate("{:.2f}".format(w), xy=((x1 + x2) / 2 , (y1 + y2) / 2), size=6, c="g")
 
             x.clear()
             y.clear()
