@@ -25,7 +25,6 @@ class TestNodeData(TestCase):
         g.remove_edge(2, 3)
         self.assertDictEqual(({1: g.getNode(1), 5: g.getNode(5), 6: g.getNode(6)}), g.getNode(2).getNi())
 
-
     def test_get_parents(self):
         g = DiGraph()
         g.add_node(0)

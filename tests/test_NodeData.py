@@ -1,22 +1,53 @@
 import unittest
+from DiGraph import NodeData
 
 
 class TestNodeData(unittest.TestCase):
     def test_get_ni(self):
-        self.assertEqual(2, 3)
-        self.fail()
+        n1 = NodeData(1)
+        n2 = NodeData(2)
+        n3 = NodeData(3)
+        n1.exit[2] = n2
+        n1.exit[2] = n2
+        n1.exit[3] = n3
+        self.assertEqual(2, len(n1.getNi()))
 
     def test_get_parents(self):
-        self.fail()
+        n1 = NodeData(1)
+        n2 = NodeData(2)
+        n3 = NodeData(3)
+        n1.enter[2] = n2
+        n1.enter[2] = n2
+        n1.enter[3] = n3
+        self.assertEqual(2, len(n1.getParents()))
 
     def test_has_ni(self):
-        self.fail()
+        n1 = NodeData(1)
+        n2 = NodeData(2)
+        n3 = NodeData(3)
+        n1.enter[2] = n2
+        n1.enter[2] = n2
+        n1.enter[3] = n3
+        self.assertFalse(n1.hasNi(2))
+
+        n1.exit[2] = n2
+        n1.exit[2] = n2
+        n1.exit[3] = n3
+        self.assertTrue(n1.hasNi(2))
 
     def test_has_parent(self):
-        self.fail()
+        n1 = NodeData(1)
+        n2 = NodeData(2)
+        n3 = NodeData(3)
+        n1.enter[2] = n2
+        n1.enter[2] = n2
+        n1.enter[3] = n3
+        self.assertTrue(n1.hasParent(2))
 
-    def test_add_ni(self):
-        self.fail()
-
-    def test_remove_ni(self):
-        self.fail()
+        n1 = NodeData(1)
+        n2 = NodeData(2)
+        n3 = NodeData(3)
+        n1.exit[2] = n2
+        n1.exit[2] = n2
+        n1.exit[3] = n3
+        self.assertFalse(n1.hasParent(2))

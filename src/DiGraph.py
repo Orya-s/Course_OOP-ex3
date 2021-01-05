@@ -6,7 +6,6 @@ class NodeData:
     def __init__(self, key: int, pos: tuple = None, enter=None, exit=None):
         self.id = key
         self.pos = pos
-        print(type(pos))
         if enter is None:
             self.enter = {}
         if exit is None:
@@ -133,3 +132,16 @@ class DiGraph(GraphInterface):
 
     def __repr__(self):
         return str(self)
+
+    def __eq__(self, other):
+        if len(self.nodes) != len(other.nodes):
+            return False
+        if len(self.edges) != len(other.edges):
+            return False
+        for node in self.nodes:
+            if not other.nodes.__contains__(node):
+                return False
+        for edge in self.edges:
+            if not other.edges.__contains__(edge):
+                return False
+        return True
