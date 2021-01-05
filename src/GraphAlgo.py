@@ -1,4 +1,6 @@
 from typing import List
+
+import null
 from DiGraph import DiGraph
 from DiGraph import NodeData
 from paintGraph import *
@@ -25,8 +27,7 @@ class GraphAlgo(GraphAlgoInterface):
             id = node["id"]
             if type(node["pos"]) is list:
                 pos = node["pos"]
-            elif node["pos"] != "null" or not node["pos"] is None:
-                print(node["pos"])
+            elif not node["pos"] is None:
                 posStr = (node["pos"]).split(",")
                 pos = (float(posStr[0]), float(posStr[1]))
             else:
