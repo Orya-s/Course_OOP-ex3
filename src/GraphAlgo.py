@@ -23,7 +23,9 @@ class GraphAlgo(GraphAlgoInterface):
             json_dict = json.load(json_path)
         for node in json_dict["Nodes"]:
             id = node["id"]
-            pos = node["pos"]
+            posStr = (node["pos"]).split(",")
+            pos = (float(posStr[0]), float(posStr[1]))
+            print(type(pos))
             self.graph.add_node(id, pos)
         for edge in json_dict["Edges"]:
             src = edge["src"]

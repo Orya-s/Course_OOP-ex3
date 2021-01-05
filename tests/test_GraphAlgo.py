@@ -50,8 +50,9 @@ class TestGraphAlgo(TestCase):
         self.assertEqual(ans, ga.connected_components())
 
     def test_plot_graph(self):
-        graph = self.createGraph()
+        graph = DiGraph()
         ga = GraphAlgo(graph)
+        ga.load_from_json('A0.json')
         ga.plot_graph()
 
     def createGraph(self):

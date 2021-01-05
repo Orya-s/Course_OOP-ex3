@@ -6,6 +6,7 @@ class NodeData:
     def __init__(self, key: int, pos: tuple = None, enter=None, exit=None):
         self.id = key
         self.pos = pos
+        print(type(pos))
         if enter is None:
             self.enter = {}
         if exit is None:
