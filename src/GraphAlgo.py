@@ -10,6 +10,8 @@ import sys
 
 from GraphAlgoInterface import GraphAlgoInterface
 
+visitDict = {}
+
 
 class GraphAlgo(GraphAlgoInterface):
 
@@ -82,8 +84,8 @@ class GraphAlgo(GraphAlgoInterface):
             return []
         for n in self.graph.nodes:
             node = self.graph.getNode(n)
-            node.info = "none"
-            node.tag = sys.float_info.max
+            # node.info = "none"
+            # node.tag = sys.float_info.max
             node.visited = False
         node = self.graph.getNode(id1)
         checkQ = queue.Queue()
@@ -100,20 +102,20 @@ class GraphAlgo(GraphAlgoInterface):
             if self.graph.getNode(node).visited:
                 tempexit.append(self.graph.getNode(node))
 
-        for n in self.graph.nodes:
-            node = self.graph.getNode(n)
-            node.info = "none"
-            node.tag = sys.float_info.max
-            node.visited = False
+        # for n in self.graph.nodes:
+        #     node = self.graph.getNode(n)
+        #     # node.info = "none"
+        #     # node.tag = sys.float_info.max
+        #    # node.visited = False
         node = self.graph.getNode(id1)
         checkQ.put(node)
         node.visited = True
         while not checkQ.empty():
             temp = checkQ.get()
             for nodes in temp.enter:
-                if not self.graph.getNode(nodes).visited:
+                if self.graph.getNode(nodes).visited:
                     checkQ.put(self.graph.getNode(nodes))
-                    self.graph.getNode(nodes).visited = True
+                    self.graph.getNode(nodes).visited = False
         tempenter = []
         for node in self.graph.nodes:
             if self.graph.getNode(node).visited:
@@ -123,12 +125,14 @@ class GraphAlgo(GraphAlgoInterface):
         for node in tempenter:
             if tempexit.__contains__(node):
                 ans.append(node)
+                visitDict[node.id] = node
         return ans
 
     def connected_components(self) -> List[list]:
+        visitDict.clear()
         ans = []
         for node in self.graph.nodes:
-            if not self.graph.getNode(node).visited:
+            if not visitDict.__contains__(node):
                 add = self.connected_component(node)
                 ans.append(add)
         return ans
