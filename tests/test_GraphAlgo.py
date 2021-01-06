@@ -79,7 +79,7 @@ class TestGraphAlgo(TestCase):
         graph.add_node(9, (30, 35))
         ga = GraphAlgo(graph)
         ga.plot_graph()
-        g = self.randomGraph(1000)
+        g = self.randomGraph(25)
         algo = GraphAlgo(g)
         algo.plot_graph()
 
@@ -87,6 +87,6 @@ class TestGraphAlgo(TestCase):
         graph = DiGraph()
         for i in range(nodes):
             graph.add_node(i)
-        for i in range(int(nodes / 3)):
+        for i in range(int(nodes)):
             graph.add_edge(random.randint(0, nodes), i, random.randint(1, 5))
         return graph
