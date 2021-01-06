@@ -10,24 +10,6 @@ import time
 
 
 class MyTestCase(unittest.TestCase):
-   # def test_save_big_graphs(self):
-        # global g
-        # g = DiGraph()
-        # x = 1000000
-        # for i in range(x):
-        #     g.add_node(NodeData(id=i).id)
-        #     g.get_node(i).myLocation = (random.uniform(0.0, 60.0), random.uniform(0.0, 50.0), 0.0)
-        #
-        # for j in range(x):
-        #     g.add_edge(j, (j + 2050) % x, random.uniform(0.0, 20.0))
-        #     # g.add_edge(j, int(random.uniform(0, x)), random.uniform(0.0, 20.0))
-        #
-        # global ga
-        #
-        # ga = GraphAlgo(g)
-        #
-        # ga.save_to_json("1000000_nodes.json")
-        # print("nodes - ", ga.my_g.node_size, " edges - ", ga.my_g.edge_size)
 
     def test_time_100_graphs(self):
         print("__________________________________________________________________--")
@@ -156,41 +138,5 @@ class MyTestCase(unittest.TestCase):
         print("TIME- ALL:   all 100000 node graph : " + (end_all - start_all).__str__())
         print("__________________________________________________________________--")
 
-
-if __name__ == '__main__':
-    unittest.main()
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# def randomGraph(nodes: int):
-#     graph = DiGraph()
-#     for i in range(nodes):
-#         graph.add_node(i)
-#         graph.getNode(i).pos = (random.randint(0, nodes), random.randint(0, nodes))
-#     for i in range(int(nodes / 3)):
-#         graph.add_edge(random.randint(0, nodes), i, random.randint(1, 5))
-#     return graph
-#
-#
-#
-# class test_Compare(TestCase):
-#     def test_plot_graph(self):
-#         graph = randomGraph(1000000)
-#         ga = GraphAlgo(graph)
-#         ga.save_to_json("1000000N_333333E.json")
-#         ga.load_from_json("1000000N_333333E.json")
-#         #print(ga.connected_components())
-#
-#
 
 

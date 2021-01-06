@@ -1,6 +1,5 @@
 from typing import List
 
-import null
 from DiGraph import DiGraph
 from DiGraph import NodeData
 from paintGraph import *
@@ -84,8 +83,6 @@ class GraphAlgo(GraphAlgoInterface):
             return []
         for n in self.graph.nodes:
             node = self.graph.getNode(n)
-            # node.info = "none"
-            # node.tag = sys.float_info.max
             node.visited = False
         node = self.graph.getNode(id1)
         checkQ = queue.Queue()
@@ -97,24 +94,11 @@ class GraphAlgo(GraphAlgoInterface):
                 if not self.graph.getNode(nodes).visited:
                     checkQ.put(self.graph.getNode(nodes))
                     self.graph.getNode(nodes).visited = True
-        # tempexit = []
-        # for node in self.graph.nodes:
-        #     if self.graph.getNode(node).visited:
-        #         tempexit.append(self.graph.getNode(node))
 
-        # for n in self.graph.nodes:
-        #     node = self.graph.getNode(n)
-        #     # node.info = "none"
-        #     # node.tag = sys.float_info.max
-        #    # node.visited = False
-        ansDict = {}
         ans = []
         node = self.graph.getNode(id1)
         checkQ.put(node)
 
-
-
-        # node.visited = True
         while not checkQ.empty():
             temp = checkQ.get()
             for nodes in temp.enter:
@@ -123,17 +107,9 @@ class GraphAlgo(GraphAlgoInterface):
                     self.graph.getNode(nodes).visited = False
                     ans.append(nodes)
 
-        # tempenter = []
-        # for node in self.graph.nodes:
-        #     if self.graph.getNode(node).visited:
-        #         tempenter.append(self.graph.getNode(node))
         if not ans.__contains__(id1):
             ans.append(id1)
-        # ans = []
-        # for node in tempenter:
-        #     if tempexit.__contains__(node):
-        #         ans.append(node)
-        #         visitDict[node.id] = node
+
         finalans = []
         ans.sort()
         for n in ans:
