@@ -87,6 +87,6 @@ class TestGraphAlgo(TestCase):
         graph = DiGraph()
         for i in range(nodes):
             graph.add_node(i)
-        for i in range(int(nodes/3)):
+        for i in range(int(nodes / 3)):
             graph.add_edge(random.randint(0, nodes), i, random.randint(1, 5))
         return graph
