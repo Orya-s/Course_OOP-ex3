@@ -5,11 +5,15 @@ import matplotlib.pyplot as plt
 
 
 class paintGraph:
+    """This class represents painting functions for a graph."""
 
     def __init__(self, g: DiGraph):
         self.graph = g
 
     def drawnodes(self):
+        """
+        drawing the nodes in the graph according to the position
+        """
         nodes = []
         x = []
         y = []
@@ -41,6 +45,9 @@ class paintGraph:
         plt.scatter(x, y, c='black', s= 5)
 
     def drawedges(self):
+        """
+        drawing the edged in the graph according to the position of the src and dest nodes
+        """
         x = []
         y = []
         i = 0
