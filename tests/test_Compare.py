@@ -1,8 +1,13 @@
+import json
+from decimal import Decimal
 from unittest import TestCase
+
+from networkx.readwrite import json_graph
+
 from paintGraph import *
 from DiGraph import DiGraph, NodeData
 from GraphAlgo import GraphAlgo
-
+import networkx
 import unittest
 import random
 from GraphAlgo import GraphAlgo
@@ -140,3 +145,81 @@ class MyTestCase(unittest.TestCase):
 
 
 
+    def test_nx100(self):
+        G = self.create_NX("100_nodes.json")
+        start_shortest_path = time.time()
+        networkx.shortest_path(G, 42,22)
+        end__shortest_path = time.time()
+        print("TIME- PATH:   shortest path 100 node graph: " + (end__shortest_path - start_shortest_path).__str__())
+
+        start_connected_components = time.time()
+        networkx.strongly_connected_components(G)
+        end_connected_components = time.time()
+        print(
+            "TIME- CCS:   connected_components 100 node graph: " + (
+                        end_connected_components - start_connected_components).__str__())
+
+
+        # print("__________________________________________________________________--")
+
+    def test_nx10000(self):
+        G = self.create_NX("10000_nodes.json")
+        start_shortest_path = time.time()
+        networkx.shortest_path(G, 8125, 7725)
+        end__shortest_path = time.time()
+        print("TIME- PATH:   shortest path 10000 node graph: " + (end__shortest_path - start_shortest_path).__str__())
+
+        start_connected_components = time.time()
+        networkx.strongly_connected_components(G)
+        end_connected_components = time.time()
+        print(
+            "TIME- CCS:   connected_components 10000 node graph: " + (
+                    end_connected_components - start_connected_components).__str__())
+
+        # print("__________________________________________________________________--")
+
+    def test_nx100000(self):
+        G = self.create_NX("100000_nodes.json")
+        start_shortest_path = time.time()
+        networkx.shortest_path(G, 67596, 99996)
+        end__shortest_path = time.time()
+        print("TIME- PATH:   shortest path 100000 node graph: " + (end__shortest_path - start_shortest_path).__str__())
+
+        start_connected_components = time.time()
+        networkx.strongly_connected_components(G)
+        end_connected_components = time.time()
+        print(
+            "TIME- CCS:   connected_components 100000 node graph: " + (
+                    end_connected_components - start_connected_components).__str__())
+
+        print("__________________________________________________________________--")
+
+    def test_nx1000000(self):
+        G = self.create_NX("1000000_nodes.json")
+        start_shortest_path = time.time()
+        networkx.shortest_path(G, 786296, 99996)
+        end__shortest_path = time.time()
+        print("TIME- PATH:   shortest path 1000000 node graph: " + (end__shortest_path - start_shortest_path).__str__())
+
+        start_connected_components = time.time()
+        print(networkx.strongly_connected_components(G))
+        end_connected_components = time.time()
+        print(
+            "TIME- CCS:   connected_components 1000000 node graph: ",
+                (end_connected_components - start_connected_components))
+
+        print("__________________________________________________________________--")
+
+    def create_NX(self, filename):
+
+        gr = networkx.DiGraph()
+        t = DiGraph()
+        ga = GraphAlgo(t)
+        ga.load_from_json(filename)
+        print(len(ga.graph.nodes))
+        for i in ga.graph.nodes:
+            gr.add_node(i)
+        for i in ga.graph.edges:
+            temp = i.split("-->")
+            gr.add_edge(int(temp[0]), int(temp[1]), weight=ga.graph.edges[i])
+        return gr
