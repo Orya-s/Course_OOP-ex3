@@ -13,6 +13,15 @@ visitDict = {}
 
 
 class GraphAlgo(GraphAlgoInterface):
+    """
+  This class represents a directed weighted Graph Theory algorithms including:
+  1. load_from_json(file)
+  2. save_to_json(file)
+  3. shortestPath(int src, int dest) -> (float, list)
+  4. connected_component(node_id) -> list
+  5. connected_components() -> List[list]
+  6. plot_graph()
+    """
 
     def __init__(self, g: DiGraph = None):
         self.graph = g
@@ -21,6 +30,11 @@ class GraphAlgo(GraphAlgoInterface):
         return self.graph
 
     def load_from_json(self, file_name: str) -> bool:
+        """
+        This method loads a graph to this graph algorithm.
+        :param file_name: file name
+        :return: true - iff the graph was successfully loaded.
+        """
         self.graph = DiGraph()
         with open(file_name, 'r') as json_path:
             json_dict = json.load(json_path)
@@ -42,6 +56,11 @@ class GraphAlgo(GraphAlgoInterface):
         return True
 
     def save_to_json(self, file_name: str) -> bool:
+        """
+       Saves this weighted directed graph to the given file name.
+        :param file_name - the file name.
+        :return: true - iff the file was successfully saved.
+        """
         dict = {}
         edgeload = []
         vertices = []
@@ -65,6 +84,13 @@ class GraphAlgo(GraphAlgoInterface):
         return True
 
     def shortest_path(self, id1: int, id2: int) -> (float, list):
+        """
+        Returns the shortest path from node id1 to node id2 using Dijkstra's Algorithm
+        If there is no path between id1 and id2, or one of them dose not exist the function returns (float('inf'),[])
+        :param id1: The start node id
+        :param id2: The end node id
+        :return: The distance of the path, a list of the nodes ids that the path goes through
+        """
         if not self.graph.nodes.__contains__(id1) or not self.graph.nodes.__contains__(id2):
             return float('inf'), []
         if id1 == id2:
@@ -77,6 +103,12 @@ class GraphAlgo(GraphAlgoInterface):
         return w, path
 
     def connected_component(self, id1: int) -> list:
+        """
+        Finds the Strongly Connected Component(SCC) that node id1 is a part of.
+        Notes: If the graph is None or id1 is not in the graph, the function should return an empty list []
+        :param id1: The node id
+        :return: The list of nodes in the SCC
+        """
         if self.graph is None:
             return []
         if not self.graph.nodes.__contains__(id1):
@@ -119,6 +151,11 @@ class GraphAlgo(GraphAlgoInterface):
         return finalans
 
     def connected_components(self) -> List[list]:
+        """
+        Finds all the Strongly Connected Component(SCC) in the graph.
+        Notes: If the graph is None the function returns an empty list []
+        :return: The list all SCC
+        """
         visitDict.clear()
         ans = []
         for node in self.graph.nodes:
@@ -128,6 +165,12 @@ class GraphAlgo(GraphAlgoInterface):
         return ans
 
     def plot_graph(self) -> None:
+        """
+        Plots the graph.
+        If the nodes have a position, the nodes will be placed there.
+        Otherwise, they will be placed in a random but elegant manner.
+        :return: None
+        """
         d = paintGraph(self.graph)
         d.drawnodes()
         d.drawedges()

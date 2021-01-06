@@ -1,8 +1,4 @@
-import json
-from decimal import Decimal
 from unittest import TestCase
-
-from networkx.readwrite import json_graph
 
 from paintGraph import *
 from DiGraph import DiGraph, NodeData
